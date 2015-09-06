@@ -22,24 +22,22 @@ Route::get('/', function () {
 
 
 resource('posts','PostsController');
+resource('persons','PersonController');
 
-//Route::get('posts',function(){
-//    $post=App\Post::with('user')->Order()->get();
-//    return view('posts',compact('post'));
-//});
-//get('posts/create',array('as'=>'post',function(){
-//    $users=User::lists('username','id');
-//    return view('create_post',compact('users'));
-//}));
-//post('posts',array('as'=>'create_post',function(PostCreate $request){
-//    $user=User::find($request->input('user'));
-//    $post=new Post;
-//    $post->title=$request->input('title');
-//    $post->body=$request->input('body');
-//    $user->Post()->save($post);
-//
-//
-//    return redirect('posts');
-//
-//
-//}));
+get('loginf',function(){
+    $user=User::find(1);
+   Auth::login($user);
+    return redirect('/');
+});
+
+
+resource('classes','ClassControlle');
+/*
+ * Auth;
+ *
+ *
+ */
+
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');

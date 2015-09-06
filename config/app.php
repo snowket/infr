@@ -146,6 +146,7 @@ return [
         Laracasts\Generators\GeneratorsServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

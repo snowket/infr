@@ -3,7 +3,7 @@
 @section('article')
         {!! Form::open(['action' => 'PostsController@store','class'=>'form','files'=>'true']) !!}
 
-        {!! Form::select('user',$users,array('class'=>'form-control')) !!}
+
         <hr>
         <div class="form-group">
         {!! Form::label('title', 'Enter Title', array('class' => 'form-control'))!!}
