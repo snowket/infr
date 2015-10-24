@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+resource('users','UsersController');
 resource('posts','PostsController');
 resource('persons','PersonController');
 

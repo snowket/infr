@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostCreate;
+use Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
@@ -41,8 +42,10 @@ class PostsController extends Controller
      */
     public function store(PostCreate $request)
     {
-        $user=User::find($request->input('user'));
+        
+        $user=User::findorFail(Auth::user()->id);
         $post=new Post;
+      
         $post->title=$request->input('title');
         $post->body=$request->input('body');
         $user->Post()->save($post);

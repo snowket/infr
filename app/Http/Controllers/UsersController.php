@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Requests\PersonCreate;
 use App\User;
 use Illuminate\Http\Request;
-use App\Person;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PersonController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +17,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $persons=Person::with('user')->get();
-//        dd($persons);
-        return view('persons',compact('persons'));
+        $users=User::All();
+        return view('users',compact('users'));
     }
 
     /**
@@ -31,34 +28,19 @@ class PersonController extends Controller
      */
     public function create()
     {
-        $users=User::all();
-        return view('person_create',compact('users'));
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PersonCreate  $request
+     * @param  Request  $request
      * @return Response
      */
-    public function store(PersonCreate $request)
+    public function store(Request $request)
     {
-        $date=$request->all();
-//
-        $user=User::find($request->user);
-
-        $pinfo=new Person();
-
-
-        $pinfo->email=$request->input('email');
-        $pinfo->phoneNumber=$request->input('phoneNumber');
-        $pinfo->personalNumber=$request->input('personalNumber');
-        //dd($pinfo);
-        $user->Person()->save($pinfo);
-        $persons=Person::All();
-        return redirect()->action('PersonController@index');
+        //
     }
-
 
     /**
      * Display the specified resource.
@@ -68,8 +50,7 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        $person=Person::findOrFail($id);
-        return view('person',compact('person'));
+        //
     }
 
     /**
@@ -103,6 +84,9 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=User::FindOrFail($id);
+        $user->delete();
+
+        return redirect('/users');
     }
 }

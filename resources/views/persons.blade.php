@@ -1,6 +1,7 @@
 @extends('master')
 
 @section('article')
+@if(!empty($persons))
     <ul>
         @foreach($persons as $person)
             <li>
@@ -10,4 +11,5 @@
             </li>
         @endforeach
     </ul>
+   @endif
     @stop

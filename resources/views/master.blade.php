@@ -1,6 +1,8 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta charset="UTF-8">
+
     {!! Helpers::css() !!}
     {!! Helpers::js() !!}
     <title>
@@ -12,62 +14,42 @@
     </title>
 
 </head>
-<body style="margin:5px;">
-<nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
-	<a class="navbar-brand" href="/ ">Informer</a>
-	<ul class="nav navbar-nav">
-		<li class="active">
-			<a href="/">Home</a>
-		</li>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a style = "float:left" class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-home"></span > Home Page</a>
+         </div>
+        <div class="navbar-collapse collapse">
 
-			@if(Auth::check())
-            <li>
-                <a href="{!! action('PersonController@index') !!}">Profile</a>
-                </li>
-        <li>
-                <a href="auth/logout">Log Out</a>
-            </li>
-                @else
-                <li>
-                <a href="auth/login">Log In First</a>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/users">All Users</a></li>
+                    <li><a href="/pupils">Pupils</a></li>
+                    <li><a href="/teachers">Teachers</a></li>
+                    <li ><a href="/classes">Classes</a></li>
+                    <li><a href="/marks">Marks </a></li>             <!-- ??????????  - evaluate -->
+                    <li><a href="/subjects">Subjects</a></li>
+                    @if(Auth::check())
+                    <li><a href="{!! "persons/". Auth()->User()->id !!} ">Profile</a></li>
+                    <li>
+                        <a href="/auth/logout">Logout</a>
                     </li>
-        <li>
-                <a href="loginf">Login Tesst</a>
-            </li>
-                @endif
+                        @else
+                        <li><a href="/auth/login">Log In</a></li>
+                        @endif
 
+                </ul>
 
-	</ul>
-</nav>
-<div class="row">
-    <div class="col-md-12">
-      @if(Auth::check())
-            {!!
-          Navigation::tabs([
-        [
-          'title' => 'All Posts',
-          'link' =>  action('PostsController@index')
-        ],
-        [
-          'title' => 'Posts Create',
-          'link' => action('PostsController@create')
-        ],
-        [
-            'title'=>'Persons',
-            'link' =>url('/persons')
-        ],
-         [
-            'title'=>'Persons Create',
-            'link' =>url('/persons/create')
-        ],
-        [
-            'title'=>'Classes',
-            'link'=>url('classes')
-        ],
-        ])
-        !!}
-      @endif
+        </div>
     </div>
+</nav>
+
     <div class="col-md-4">
           @yield('article')
     </div>
@@ -76,4 +58,4 @@
 
 
 </body>
-</html>
+</>
